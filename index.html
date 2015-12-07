@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bodysystemics Lab</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+    <div class="wrapper columns">
+        <div class="col full header">
+            <h1 style="text-align: center;"> Video analysis </h1>
+        </div>
+        <div class="col two_third">
+            <div class="video_tag">
+                <video class="vid" width="960" height="500" preload="auto" controls>
+                    <source src="medias/video/human.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="col one_third content">
+            <form>
+                <input type="text" value="" placeholder="Note title...">
+                <textarea class="text_editor">Some example...</textarea>
+            </form>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" scr="/js/jquery.video-extend.js"></script>
+    <script src="/js/jquery-ace/ace/ace.js"></script>
+    <script src="/js/jquery-ace/ace/theme-twilight.js"></script>
+    <script src="/js/jquery-ace/ace/mode-ruby.js"></script>
+    <script src="/js/jquery-ace/jquery-ace.min.js"></script>
+    <script type="text/javascript">
+        // use strict mode
+        'use strict';
+
+        /**
+        * No Conflict
+        * Used to check if "jQuery" is defined
+        * instead of "$" variable to avoid conflicts
+        */
+        if (typeof jQuery !== "undefined")
+            var $ = jQuery.noConflict();
+
+        $(document).ready(function()
+        {
+            // video
+            videoTags('video');
+            ContentFullHeight('.content');
+            $('.vid.video-js').css({ 'width': '100%', 'max-width': '100%' });
+
+            // text editor
+            $('.text_editor').ace({ theme: 'twilight', lang: 'ruby' });
+        });
+
+        /**
+        * ContentFullHeight
+        * @param {[type]} element [description]
+        */
+        function ContentFullHeight(element)
+        {
+            $(window).load(function()
+            {
+                $(element).each(function() {
+                    var windowHeight = $(window).height();
+
+                    $(this).height(windowHeight);
+                });
+            });
+            $(window).resize(function()
+            {
+                $(this).load();
+            });
+        }
+
+        /**
+         * videoTags
+         * @param  {[type]} element [description]
+         */
+        function videoTags(element)
+        {
+            $.getScript('js/jquery.video-extend.js', function()
+            {
+                $(element).each(function(index, el)
+                {
+                    $(this).videoExtend({
+                        markers: [
+                            {
+                                time: 12,// seconds
+                                text: 'Chapter 1'
+                            },
+                            {
+                                time: 25,
+                                text: 'Chapter 2'
+                            },
+                            {
+                                time: 37,
+                                text: 'Chapter 3'
+                            },
+                            {
+                                time: 60,
+                                text: 'Chapter 4'
+                            }
+                        ]
+                    });
+                });
+            });
+        }
+    </script>
+</body>
+</html>
