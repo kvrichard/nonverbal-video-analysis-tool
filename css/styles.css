@@ -377,3 +377,33 @@ h1, h2, h3, h4, h5, p
     background: rgba(255, 255, 255, 0.05);
     transition: 0.3s;
 }
+
+.columns .col.content form
+{
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.columns .col.content form input.title,
+.columns .col.content form textarea.text_editor
+{
+    display: block;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    outline: none;
+
+    font-family: Consolas, monaco, monospace;
+    font-weight: lighter;
+    font-style: normal;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: rgba(200, 200, 200, 0.8);
+
+}
